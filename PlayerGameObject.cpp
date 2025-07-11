@@ -50,6 +50,9 @@ void PlayerGameObject::OnCollisionStay(GameObject* other) {
             sideCollider.insert(other);
         }
     }
+    else if(sideCollider.empty()){
+        rigidBody->velocity.x += other->GetComponent<RigidBody>()->velocity.x*1.3;
+    }
     std::cout << name << " Collision Stay  with " << other->name <<std::endl;
 }
 void PlayerGameObject::OnCollisionExit(GameObject* other) {
