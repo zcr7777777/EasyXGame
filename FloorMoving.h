@@ -1,6 +1,7 @@
 #pragma once
 #include "IComponent.h"
 #include "Engine.h"
+#include "RigidBody.h"
 /// <summary>
 /// 地板移动组件，用于控制地板随机移动
 /// </summary>

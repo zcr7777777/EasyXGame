@@ -3,6 +3,7 @@
 #include "graphics.h"
 #include <string>
 #include <vector>
+#include <exception>
 class IComponent; // 前置声明
 /// <summary>
 /// 游戏对象类，任何对象都是游戏对象，都要继承此抽象基类，必须实现所有抽象方法
@@ -82,6 +83,7 @@ protected:
                     return castedComponent;  
                 }  
             }  
+            throw "Component not found";
             return nullptr;  
         }
 };

@@ -21,8 +21,8 @@ void PlayerGameObject::Start(){
     boxCollider = new BoxCollider(this);
     animator = new Animator(this);
     audioSource = new AudioSource(this);
-    AddComponent(rigidBody);
     AddComponent(boxCollider);
+    AddComponent(rigidBody);
     AddComponent(animator);
     AddComponent(audioSource);
     boxCollider->onCollisionEnter = std::bind(&PlayerGameObject::OnCollisionEnter, this, std::placeholders::_1);
@@ -44,9 +44,7 @@ void PlayerGameObject::OnCollisionEnter(GameObject* other) {
 }
 void PlayerGameObject::OnCollisionStay(GameObject* other) {
     animator->ChangeTexture(2);
-    if (transform.position.y < other->transform.position.y + other->transform.scale.y / 2) {
-        //rigidBody->velocity.x = other->GetComponent<RigidBody>()->velocity.x;
-    }
+    rigidBody->velocity.x = other->GetComponent<RigidBody>()->velocity.x;
     std::cout << name << " Collision Stay  with " << other->name <<std::endl;
 }
 void PlayerGameObject::OnCollisionExit(GameObject* other) {
