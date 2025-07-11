@@ -20,7 +20,10 @@ int main()
     engine->AddGameObject(new WallGameObject("Floor", 1, Transform({ 445,324 }, { 127,44 }, 0)));
     engine->AddGameObject(new WallGameObject("Floor", 1, Transform({ 572,244 }, { 127,44 }, 0)));
     engine->AddGameObject(new WallGameObject("Floor", 1, Transform({ 699,164 }, { 127,44 }, 0)));
-    engine->AddGameObject(new PictureGameObject(-1, {0,0},"Inazuma.png"));
+    engine->AddGameObject(new PictureGameObject("BackGround", -1, {0,0}, "Inazuma.png"));
+    GameObject* e = new PictureGameObject("Elysia", 2, { 690,65 }, "Elysia.png");
+    engine->AddGameObject(e);
+    e->AddComponent(new BoxCollider(e,true));
 
     // ÔËĞĞÓÎÏ·
     engine->Start();

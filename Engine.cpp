@@ -8,7 +8,7 @@
 #include <thread>
 Engine* Engine::instance = nullptr;
 bool Engine::isRunning = false;
-Engine::Engine(Vector2 frameScale):frameScale(frameScale) {}
+Engine::Engine(Vector2 frameScale = {}) :frameScale(frameScale) {}
 void Engine::Start() {
     std::cout << "C++ Version: " << __cplusplus << std::endl;
     isRunning = true;
@@ -38,7 +38,7 @@ void Engine::RunTime() {
         std::this_thread::sleep_for(std::chrono::milliseconds(5));
     }
 }
-Engine* Engine::GetInstance(Vector2 frameScale) {
+Engine* Engine::GetInstance(Vector2 frameScale = {}) {
     if (!instance) {
         instance = new Engine(frameScale);
     }

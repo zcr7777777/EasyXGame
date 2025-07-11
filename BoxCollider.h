@@ -67,7 +67,7 @@ public:
     /// </summary>
     bool isTrigger{ false };
 
-    BoxCollider(GameObject* obj) : IComponent(obj)
+    BoxCollider(GameObject* obj,bool isTrigger=false) : IComponent(obj), isTrigger(isTrigger)
     {
         s_Instances.push_back(this);
         worldPosition = obj-> transform.position;
@@ -164,7 +164,7 @@ public:
 
     void TriggerEnterEvent(BoxCollider* other)
     {
-        if (isTrigger)
+        if (other->isTrigger)
         {
             if (onTriggerEnter) onTriggerEnter(other->gameObject);
         }
@@ -176,7 +176,7 @@ public:
 
     void TriggerStayEvent(BoxCollider* other)
     {
-        if (isTrigger)
+        if (other->isTrigger)
         {
             if (onTriggerStay) onTriggerStay(other->gameObject);
         }
@@ -188,7 +188,7 @@ public:
 
     void TriggerExitEvent(BoxCollider* other)
     {
-        if (isTrigger)
+        if (other->isTrigger)
         {
             if (onTriggerExit) onTriggerExit(other->gameObject);
         }

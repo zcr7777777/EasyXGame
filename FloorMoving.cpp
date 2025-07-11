@@ -3,8 +3,6 @@ void FloorMoving::UpdateLogic(float deltaTime) {
 	Vector2 frameScale = Engine::GetInstance({})->frameScale;
 	Vector2 scale = gameObject->transform.scale;
 	gameObject->GetComponent<RigidBody>()->velocity = { 0.1f * direction * speed,0.02f };
-	//gameObject->transform.position.x += 0.1f * deltaTime * direction * speed;
-	//gameObject->transform.position.y += 0.02f * deltaTime;
 	if (gameObject->transform.position.y > frameScale.y+scale.y/2) {
 		gameObject->transform.position.y = -scale.y/2;
 	}

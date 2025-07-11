@@ -2,7 +2,7 @@
 Animator::Animator(GameObject* obj) : IComponent(obj) {}
 void Animator::Start(){
     textures.push_back(new IMAGE());
-    loadimage(textures[0], _T("Elysia.png"));
+    loadimage(textures[0], _T("playerTexture1.png"));
     textures.push_back(new IMAGE());
     loadimage(textures[1], _T("playerTexture2.png"));
     textures.push_back(new IMAGE());
