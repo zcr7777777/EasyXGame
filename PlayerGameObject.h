@@ -39,5 +39,10 @@ private:
         /// </summary>
         /// <param name="other">触发碰撞的游戏对象</param>
         void OnCollisionExit(GameObject* other);
+        /// <summary>
+        /// 触发器进入回调
+        /// </summary>
+        /// <param name="other">触发碰撞的游戏对象</param>
+        void OnTriggerEnter(GameObject* other);
 };
 

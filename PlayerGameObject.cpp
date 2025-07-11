@@ -6,6 +6,7 @@
 #include "BoxCollider.h"
 #include "Animator.h"
 #include "Engine.h"
+#include "main.h"
 #include <functional>
 #include <iostream>
 #ifndef VK_A
@@ -28,6 +29,7 @@ void PlayerGameObject::Start(){
     boxCollider->onCollisionEnter = std::bind(&PlayerGameObject::OnCollisionEnter, this, std::placeholders::_1);
     boxCollider->onCollisionStay = std::bind(&PlayerGameObject::OnCollisionStay, this, std::placeholders::_1);
     boxCollider->onCollisionExit = std::bind(&PlayerGameObject::OnCollisionExit, this, std::placeholders::_1);
+    boxCollider->onTriggerEnter = std::bind(&PlayerGameObject::OnTriggerEnter, this, std::placeholders::_1);
     rigidBody->velocity = {0.2f,0.1f};
     for (auto component : components) {
         component->Start();
@@ -113,4 +115,10 @@ void PlayerGameObject::UpdateLogic(float deltaTime) {
 }
 PlayerGameObject::PlayerGameObject(std::string name,int renderOrder,Vector2 pos):GameObject(name,GameObjectType::Player,renderOrder){
     transform.position = pos;
+}
+
+void PlayerGameObject::OnTriggerEnter(GameObject* other) {
+    std::cout << name << " Trigger Enter with " << other->name << std::endl;
+    Engine::GetInstance({})->isRunning = false;
+    passed = true;
 }

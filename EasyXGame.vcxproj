@@ -134,6 +134,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="IComponent.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="PictureGameObject.h" />
     <ClInclude Include="Render.h" />
     <ClInclude Include="RigidBody.h" />
