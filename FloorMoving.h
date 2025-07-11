@@ -1,0 +1,23 @@
+#pragma once
+#include "IComponent.h"
+#include "Engine.h"
+/// <summary>
+/// 地板移动组件，用于控制地板随机移动
+/// </summary>
+class FloorMoving : public IComponent
+{
+public:
+	/// <summary>
+	/// 左右移动方向
+	/// </summary>
+	int direction=rand()%2?1:-1;
+    /// <summary>
+	/// 左右移动速度
+	/// </summary>
+	float speed = (rand()%5+3.0)*0.1;
+	FloorMoving(GameObject* obj) : IComponent(obj) {}
+	~FloorMoving() override= default;
+	void Start()override {}
+	void UpdateLogic(float deltaTime)override;
+};
+
