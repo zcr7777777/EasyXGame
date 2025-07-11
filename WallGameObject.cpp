@@ -10,6 +10,9 @@ void WallGameObject::Start()
     loadimage(texture, _T("floorTexture.bmp"));
     BoxCollider* boxCollider = new BoxCollider(this);
     boxCollider->size = transform.scale;
+    rigidBody = new RigidBody(this);
+    rigidBody->acceleration = { 0,0 };
+    AddComponent(rigidBody);
     AddComponent(boxCollider);
 }
 void WallGameObject::UpdateLogic(float deltaTime) {
