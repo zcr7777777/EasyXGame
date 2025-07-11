@@ -45,7 +45,12 @@ void PlayerGameObject::OnCollisionEnter(GameObject* other) {
 void PlayerGameObject::OnCollisionStay(GameObject* other) {
     animator->ChangeTexture(2);
     if (((transform.position.x < other->transform.position.x - other->transform.scale.x / 2 + 1) || (transform.position.x > other->transform.position.x + other->transform.scale.x / 2 - 1)) && (transform.position.y + transform.scale.y / 2 > other->transform.position.y - other->transform.scale.y / 2 + 10)) {
-        rigidBody->velocity.x = other->GetComponent<RigidBody>()->velocity.x;
+        if (transform.position.x < other->transform.position.x) {
+            rigidBody->velocity.x = min(other->GetComponent<RigidBody>()->velocity.x,rigidBody->velocity.x);
+        }
+        else {
+            rigidBody->velocity.x = max(other->GetComponent<RigidBody>()->velocity.x,rigidBody->velocity.x);
+        }
         if (sideCollider.find(other) == sideCollider.end()) {
             sideCollider.insert(other);
         }
