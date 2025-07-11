@@ -5,6 +5,7 @@
 #include "Animator.h"
 #include "AudioSource.h"
 #include "Engine.h"
+#include <set>
 class BoxCollider; // 前置声明
 /// <summary>
 /// 玩家游戏对象类
@@ -22,6 +23,7 @@ private:
         PlayerGameObject(std::string name,int renderOrder,Vector2 pos);
         void Start() override;
         void UpdateLogic(float deltaTime) override;
+        std::set<GameObject*> sideCollider;
         /// <summary>
         /// 碰撞器进入回调
         /// </summary>

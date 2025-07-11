@@ -36,7 +36,7 @@ void PlayerGameObject::Start(){
 void PlayerGameObject::OnCollisionEnter(GameObject* other) {
     animator->ChangeTexture(2);
     std::cout <<name << " Collision Enter with " << other->name << std::endl;
-    if (rigidBody->velocity.y > 0) {
+    if (rigidBody->velocity.y > 0 && !(((transform.position.x < other->transform.position.x - other->transform.scale.x / 2 + 1) || (transform.position.x > other->transform.position.x + other->transform.scale.x / 2 - 1)) && (transform.position.y + transform.scale.y / 2 > other->transform.position.y - other->transform.scale.y / 2 + 10))) {
         onGround = true;
         canJump = true;
     }
@@ -44,12 +44,23 @@ void PlayerGameObject::OnCollisionEnter(GameObject* other) {
 }
 void PlayerGameObject::OnCollisionStay(GameObject* other) {
     animator->ChangeTexture(2);
-    rigidBody->velocity.x = other->GetComponent<RigidBody>()->velocity.x;
+    if (((transform.position.x < other->transform.position.x - other->transform.scale.x / 2 + 1) || (transform.position.x > other->transform.position.x + other->transform.scale.x / 2 - 1)) && (transform.position.y + transform.scale.y / 2 > other->transform.position.y - other->transform.scale.y / 2 + 10)) {
+        rigidBody->velocity.x = other->GetComponent<RigidBody>()->velocity.x;
+        if (sideCollider.find(other) == sideCollider.end()) {
+            sideCollider.insert(other);
+        }
+    }
     std::cout << name << " Collision Stay  with " << other->name <<std::endl;
 }
 void PlayerGameObject::OnCollisionExit(GameObject* other) {
     std::cout << name << " Collision Exit  with " << other->name << std::endl;
-    onGround = false;
+    auto it=sideCollider.find(other);
+    if (it == sideCollider.end()) {
+        onGround = false;
+    }
+    else {
+        sideCollider.erase(it);
+    }
 }
 void PlayerGameObject::UpdateLogic(float deltaTime) {
     if (abs(rigidBody->velocity.y) > 0.05f)

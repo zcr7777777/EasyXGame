@@ -32,7 +32,7 @@ int main()
     /// **第二关** ///
 
     // 初始化引擎
-    engine = Engine::GetInstance({ 1920,1080 });
+    engine = Engine::GetInstance({ 1728,972 });
 
     // 添加游戏对象
     engine->AddGameObject(new PlayerGameObject("Player", 0, {0,0}));
