@@ -47,13 +47,13 @@ Engine* Engine::GetInstance(Vector2 frameScale = {}) {
 void Engine::Dispose() {
     std::cout << "Engine Disposed" << std::endl;
     if (instance) {
-        BoxCollider::s_Instances.clear();
         for (auto gameObject : instance->gameObjects) {
             if (gameObject) {
                 delete gameObject;
             }
             gameObject = nullptr;
         }
+        BoxCollider::s_Instances.clear();
         delete instance;
     }
     instance = nullptr;

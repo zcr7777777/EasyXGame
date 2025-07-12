@@ -43,6 +43,13 @@ class GameObject
         /// <param name="type">游戏对象的类型(GameObjectType 枚举值)</param>
         /// <param name="renderOrder">游戏对象的渲染顺序</param>
         GameObject(std::string name,GameObjectType type,int renderOrder):name(name),gameObjectType(type),renderOrder(renderOrder){}
+        virtual ~GameObject()
+        {
+            for (auto component : components)
+            {
+                delete component;
+            }
+        }
 protected:
     /// <summary>
     /// 游戏对象包含的组件列表

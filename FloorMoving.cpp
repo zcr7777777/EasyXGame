@@ -8,8 +8,8 @@ void FloorMoving::UpdateLogic(float deltaTime) {
 	}
 	if (gameObject->transform.position.x < -scale.x/2)
 	{
-		speed = (rand() % 5 + 3.0) * 0.1;
-		direction = rand() % 2 ? 1 : -1;
+		speed = (rand() % 10 + 3.0) * 0.1;
+		direction = rand() % 3 ? -1 :1;
 		if (direction == -1) {
 			gameObject->transform.position.x = frameScale.x+scale.x/2;
 		}
@@ -17,8 +17,8 @@ void FloorMoving::UpdateLogic(float deltaTime) {
 	}
 	if (gameObject->transform.position.x > frameScale.x+scale.x/2)
 	{
-		speed = (rand() % 5 + 3.0) * 0.1;
-		direction = rand() % 2 ? 1 : -1;
+		speed = (rand() % 10 + 3.0) * 0.1;
+		direction = rand() % 3 ? -1 : 1;
 		if (direction == 1) {
 			gameObject->transform.position.x = -scale.x/2;
 		}

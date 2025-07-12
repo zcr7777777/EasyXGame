@@ -6,7 +6,6 @@
 #include "BoxCollider.h"
 #include "Animator.h"
 #include "Engine.h"
-#include "main.h"
 #include <functional>
 #include <iostream>
 #ifndef VK_A
@@ -98,8 +97,9 @@ void PlayerGameObject::UpdateLogic(float deltaTime) {
     }
     Vector2 frameScale = Engine::GetInstance({})->frameScale;
     if (transform.position.y > frameScale.y-transform.scale.y/2) {
-        std::cout << "Game Over" << std::endl;
-        Engine::isRunning = false;
+        transform.position = { 0,0 };
+        sideCollider.clear();
+        onGround = false;
     }
     for (auto component : components) {
         component->UpdateLogic(deltaTime);
@@ -120,5 +120,4 @@ PlayerGameObject::PlayerGameObject(std::string name,int renderOrder,Vector2 pos)
 void PlayerGameObject::OnTriggerEnter(GameObject* other) {
     std::cout << name << " Trigger Enter with " << other->name << std::endl;
     Engine::GetInstance({})->isRunning = false;
-    passed = true;
 }

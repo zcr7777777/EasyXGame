@@ -11,7 +11,7 @@ public:
 	/// <summary>
 	/// 左右移动方向
 	/// </summary>
-	int direction=rand()%2?1:-1;
+	int direction=rand()%4?-1:1;
     /// <summary>
 	/// 左右移动速度
 	/// </summary>

@@ -11,5 +11,6 @@ public:
     }
 	void Start() override;
     void UpdateLogic(float deltaTime) override;
+    ~PictureGameObject() override= default;
 };
 

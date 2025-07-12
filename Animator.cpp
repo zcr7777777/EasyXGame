@@ -17,3 +17,9 @@ void Animator::ChangeTexture(int id){
         gameObject->texture=textures[id];
     }
 }
+Animator::~Animator() {
+    for (auto texture : textures) {
+        delete texture;
+        texture = nullptr;
+    }
+}

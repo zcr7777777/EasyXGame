@@ -22,7 +22,7 @@ class Animator : public IComponent
         Animator(GameObject* obj);
         void Start() override;
         void UpdateLogic(float deltaTime) override;
-        virtual ~Animator() override = default;
+        ~Animator() override;
         void ChangeTexture(int id);
 };
 

@@ -5,13 +5,9 @@
 #include "WallGameObject.h"
 #include "FloorMoving.h"
 #include "PictureGameObject.h"
-#include "main.h"
-bool passed = false;
 int main()
 {
     Engine* engine;
-    while (!passed) {
-        passed = false;
         /// **第一关：新手教程** ///
 
         // 初始化引擎
@@ -36,27 +32,28 @@ int main()
 
         // 释放引擎
         Engine::Dispose();
-    }
+        /// **第二关** ///
 
+        // 初始化引擎
+        engine = Engine::GetInstance({ 1334,467 });
 
-    /// **第二关** ///
+        // 添加游戏对象
+        engine->AddGameObject(new PictureGameObject("BackGround", -1, { 0,0 }, "ElysianRealm2.jpg"));
+        engine->AddGameObject(new PlayerGameObject("Player", 0, { 0,0 }));
+        for (int i = 0; i < 30; i++) {
+            WallGameObject* wall = new WallGameObject("Floor" + std::to_string(i), 1, Transform({ (float)(rand() % ((int)engine->frameScale.x)),(float)(rand() % ((int)engine->frameScale.y * 2) - engine->frameScale.y) }, { 127,44 }, 0));
+            wall->AddComponent(new FloorMoving(wall));
+            engine->AddGameObject(wall);
+        }
+        e = new PictureGameObject("Elysia", 2, { 1250,0 }, "Elysia.png");
+        engine->AddGameObject(e);
+        e->AddComponent(new BoxCollider(e, true));
 
-    // 初始化引擎
-    engine = Engine::GetInstance({ 1536,864 });
+        // 运行游戏
+        engine->Start();
+        engine->RunTime();
 
-    // 添加游戏对象
-    engine->AddGameObject(new PlayerGameObject("Player", 0, {0,0}));
-    for (int i = 0; i < 50; i++) {
-        WallGameObject* wall = new WallGameObject("Floor" + std::to_string(i), 1, Transform({ (float)(rand() % ((int)engine->frameScale.x)),(float)(rand() % ((int)engine->frameScale.y * 2) - engine->frameScale.y) }, { 127,44 }, 0));
-        wall->AddComponent(new FloorMoving(wall));
-        engine->AddGameObject(wall);
-    }
-
-    // 运行游戏
-    engine->Start();
-    engine->RunTime();
-
-    // 释放引擎
-    Engine::Dispose();
+        // 释放引擎
+        Engine::Dispose();
     return 0;
 }

@@ -44,5 +44,6 @@ private:
         /// </summary>
         /// <param name="other">触发碰撞的游戏对象</param>
         void OnTriggerEnter(GameObject* other);
+        ~PlayerGameObject() override= default;
 };
 

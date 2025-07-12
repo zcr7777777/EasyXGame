@@ -15,5 +15,6 @@ public:
     WallGameObject(std::string name,int renderOrder,Transform transform);
     void Start() override;
     void UpdateLogic(float deltaTime) override;
+    ~WallGameObject() override=default;
 };
 

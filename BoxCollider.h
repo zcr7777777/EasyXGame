@@ -206,6 +206,9 @@ public:
     ~BoxCollider() override
     {
         auto it = std::find(s_Instances.begin(), s_Instances.end(), this);
-        if (it != s_Instances.end()) s_Instances.erase(it);
+        if (it != s_Instances.end()) {
+            delete* it;
+            s_Instances.erase(it);
+        }
     }
 };
