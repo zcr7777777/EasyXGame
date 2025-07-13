@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <exception>
+#include <memory>
 class IComponent; // 前置声明
 /// <summary>
 /// 游戏对象类，任何对象都是游戏对象，都要继承此抽象基类，必须实现所有抽象方法
@@ -14,7 +15,7 @@ class GameObject
         /// <summary>
         /// 当前显示的纹理
         /// </summary>
-        IMAGE* texture = nullptr;
+        std::shared_ptr<IMAGE> texture;
         /// <summary>
         /// 游戏对象类型枚举
         /// </summary>

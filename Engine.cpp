@@ -5,7 +5,6 @@
 #include <iostream>
 #include <algorithm>
 #include <chrono>
-#include <thread>
 Engine* Engine::instance = nullptr;
 bool Engine::isRunning = false;
 Engine::Engine(Vector2 frameScale = {}) :frameScale(frameScale) {}
@@ -32,10 +31,10 @@ void Engine::RunTime() {
         for (GameObject* gameObject : gameObjects) {
             gameObject->UpdateLogic(dt);   
         }
+        std::cout<<1000.f/dt<<std::endl;
         Render::BeginFrame(1000.f/dt);
         Render::RenderGameObjects();
         Render::EndFrame();
-        std::this_thread::sleep_for(std::chrono::milliseconds(5));
     }
 }
 Engine* Engine::GetInstance(Vector2 frameScale = {}) {

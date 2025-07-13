@@ -56,22 +56,35 @@ void PlayerGameObject::OnCollisionStay(GameObject* other) {
             sideCollider.insert(other);
         }
     }
-    else if(sideCollider.empty()){
-        rigidBody->velocity.x += other->GetComponent<RigidBody>()->velocity.x*1.3;
+    else{
+        onGround = true;
+        if (groundCollider.find(other) == groundCollider.end()) {
+            groundCollider.insert(other);
+        }
+        if (sideCollider.empty()) {
+            rigidBody->velocity.x += other->GetComponent<RigidBody>()->velocity.x * 1.3;
+        }
     }
     std::cout << name << " Collision Stay  with " << other->name <<std::endl;
 }
 void PlayerGameObject::OnCollisionExit(GameObject* other) {
     std::cout << name << " Collision Exit  with " << other->name << std::endl;
     auto it=sideCollider.find(other);
-    if (it == sideCollider.end()) {
-        onGround = false;
-    }
-    else {
+    if (it != sideCollider.end()) {
         sideCollider.erase(it);
+    }
+    it = groundCollider.find(other);
+    if (it != groundCollider.end()) {
+        groundCollider.erase(it);
+    }
+    if (groundCollider.empty()) {
+        onGround = false;
     }
 }
 void PlayerGameObject::UpdateLogic(float deltaTime) {
+    if (groundCollider.empty()) {
+        onGround=false;
+    }
     if (abs(rigidBody->velocity.y) > 0.05f)
         animator->ChangeTexture(0);
     if(Input::GetMouseButton(0)&&
@@ -96,13 +109,13 @@ void PlayerGameObject::UpdateLogic(float deltaTime) {
         rigidBody->velocity = { 0,rigidBody->velocity.y };
     }
     Vector2 frameScale = Engine::GetInstance({})->frameScale;
-    if (transform.position.y > frameScale.y-transform.scale.y/2) {
-        transform.position = { 0,0 };
-        sideCollider.clear();
-        onGround = false;
-    }
     for (auto component : components) {
         component->UpdateLogic(deltaTime);
+    }
+    if (transform.position.y > frameScale.y - transform.scale.y / 2) {
+        transform.position = { 0,0 };
+        sideCollider.clear();
+        groundCollider.clear();
     }
     if (transform.position.x > frameScale.x-transform.scale.x/2) {
         transform.position.x = frameScale.x - transform.scale.x / 2;

@@ -24,6 +24,7 @@ private:
         void Start() override;
         void UpdateLogic(float deltaTime) override;
         std::set<GameObject*> sideCollider;
+        std::set<GameObject*> groundCollider;
         /// <summary>
         /// 碰撞器进入回调
         /// </summary>

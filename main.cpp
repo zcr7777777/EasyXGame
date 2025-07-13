@@ -23,8 +23,9 @@ int main()
         engine->AddGameObject(new WallGameObject("Floor", 1, Transform({ 699,164 }, { 127,44 }, 0)));
         engine->AddGameObject(new PictureGameObject("BackGround", -1, { 0,0 }, "Inazuma.png"));
         GameObject* e = new PictureGameObject("Elysia", 2, { 690,65 }, "Elysia.png");
-        engine->AddGameObject(e);
         e->AddComponent(new BoxCollider(e, true));
+        e->GetComponent<BoxCollider>()->size = { 40,40 };
+        engine->AddGameObject(e);
 
         // 运行游戏
         engine->Start();
@@ -40,14 +41,15 @@ int main()
         // 添加游戏对象
         engine->AddGameObject(new PictureGameObject("BackGround", -1, { 0,0 }, "ElysianRealm2.jpg"));
         engine->AddGameObject(new PlayerGameObject("Player", 0, { 0,0 }));
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 20; i++) {
             WallGameObject* wall = new WallGameObject("Floor" + std::to_string(i), 1, Transform({ (float)(rand() % ((int)engine->frameScale.x)),(float)(rand() % ((int)engine->frameScale.y * 2) - engine->frameScale.y) }, { 127,44 }, 0));
             wall->AddComponent(new FloorMoving(wall));
             engine->AddGameObject(wall);
         }
         e = new PictureGameObject("Elysia", 2, { 1250,0 }, "Elysia.png");
-        engine->AddGameObject(e);
         e->AddComponent(new BoxCollider(e, true));
+        e->GetComponent<BoxCollider>()->size = { 80,80 };
+        engine->AddGameObject(e);
 
         // 运行游戏
         engine->Start();

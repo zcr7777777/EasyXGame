@@ -10,7 +10,7 @@ class Animator : public IComponent
         /// <summary>
         /// 纹理组缓存
         /// </summary>
-        std::vector<IMAGE*> textures;
+        std::vector<std::shared_ptr<IMAGE>> textures;
         /// <summary>
         /// 纹理更新计时器
         /// </summary>

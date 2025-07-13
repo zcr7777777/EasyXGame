@@ -3,11 +3,11 @@
 #include "FloorMoving.h"
 WallGameObject::WallGameObject(std::string name,int renderOrder, Transform transform):GameObject(name,GameObjectType::Floor,renderOrder){
     this->transform = transform;
-    texture = new IMAGE();
+    texture = std::make_shared<IMAGE>();
 }
 void WallGameObject::Start()
 {
-    loadimage(texture, _T("floorTexture.bmp"));
+    loadimage(texture.get(), _T("floorTexture.bmp"));
     BoxCollider* boxCollider = new BoxCollider(this);
     boxCollider->size = transform.scale;
     rigidBody = new RigidBody(this);
