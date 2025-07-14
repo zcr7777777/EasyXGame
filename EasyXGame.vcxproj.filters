@@ -60,6 +60,15 @@
     <ClInclude Include="UIText.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="EnemyBehavior.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BallBehavior.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LifeManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -102,6 +111,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="UIText.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBehavior.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BallBehavior.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LifeManager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

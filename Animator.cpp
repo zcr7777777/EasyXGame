@@ -9,7 +9,7 @@ void Animator::Start(){
     loadimage(textures[2].get(), _T("playerTexture3.png"));
     ChangeTexture(0);
 }
-void Animator::UpdateLogic(float deltaTime){
+void Animator::Update(float deltaTime){
     timer+=deltaTime;
 }
 void Animator::ChangeTexture(int id){

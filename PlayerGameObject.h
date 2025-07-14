@@ -5,6 +5,7 @@
 #include "Animator.h"
 #include "AudioSource.h"
 #include "Engine.h"
+#include "LifeManager.h"
 #include <set>
 class BoxCollider; // Ç°ÖÃÉùÃ÷
 /// <summary>

@@ -9,7 +9,7 @@ public:
 	AudioSource(GameObject* obj) : IComponent(obj) {}
 	~AudioSource() override = default;
 	void Start()override {}
-	void UpdateLogic(float deltaTime)override {}
+	void Update(float deltaTime)override {}
 	/// <summary>
 	/// ≤•∑≈“Ù∆µ
 	/// </summary>

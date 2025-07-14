@@ -21,7 +21,7 @@ class Animator : public IComponent
         float currID = 0;
         Animator(GameObject* obj);
         void Start() override;
-        void UpdateLogic(float deltaTime) override;
+        void Update(float deltaTime) override;
         ~Animator() override;
         void ChangeTexture(int id);
 };

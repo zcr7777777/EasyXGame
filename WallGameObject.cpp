@@ -17,5 +17,5 @@ void WallGameObject::Start()
 }
 void WallGameObject::Update(float deltaTime) {
     for (auto component : components)
-        component->UpdateLogic(deltaTime);
+        component->Update(deltaTime);
 }

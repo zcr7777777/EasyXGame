@@ -23,7 +23,8 @@ class GameObject
         {
             Other = -1,
             Player = 0,
-            Floor
+            Floor,
+            Ball
         };
         /// <summary>
         /// ¿‡–Õ

@@ -79,7 +79,7 @@ public:
         size = gameObject->transform.scale;
     }
 
-    void UpdateLogic(float deltaTime) override
+    void Update(float deltaTime) override
     {
         UpdateBounds();
         DetectCollisions();

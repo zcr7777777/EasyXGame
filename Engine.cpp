@@ -14,11 +14,11 @@ void Engine::Start() {
     std::cout << "Engine Started" << std::endl;
     Render::Initialize(frameScale);
     ImmAssociateContext(Render::windowHandle, NULL);
-    std::sort(gameObjects.begin(), gameObjects.end(), [](GameObject* a, GameObject* b) { return a->renderOrder < b->renderOrder; });
 }
 void Engine::AddGameObject(GameObject* obj) {
     gameObjects.push_back(obj);
     obj->Start();
+    std::sort(gameObjects.begin(), gameObjects.end(), [](GameObject* a, GameObject* b) { return a->renderOrder < b->renderOrder; });
 }
 void Engine::RunTime() {
     auto lastTime = std::chrono::high_resolution_clock::now();
@@ -32,9 +32,16 @@ void Engine::RunTime() {
         for (GameObject* gameObject : gameObjects) {
             gameObject->Update(dt);   
         }
+        while (addGameObjectsInWait.size()) {
+            AddGameObject(addGameObjectsInWait.front());
+            addGameObjectsInWait.pop();
+        }
         Render::RenderGameObjects();
         Render::EndFrame();
     }
+}
+void Engine::AddGameObjectInRun(GameObject* obj) {
+    addGameObjectsInWait.push(obj);
 }
 Engine* Engine::GetInstance(Vector2 frameScale = {}) {
     if (!instance) {

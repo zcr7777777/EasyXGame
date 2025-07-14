@@ -128,12 +128,15 @@
   <ItemGroup>
     <ClInclude Include="Animator.h" />
     <ClInclude Include="AudioSource.h" />
+    <ClInclude Include="BallBehavior.h" />
     <ClInclude Include="BoxCollider.h" />
+    <ClInclude Include="EnemyBehavior.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="FloorMoving.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="IComponent.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="LifeManager.h" />
     <ClInclude Include="PictureGameObject.h" />
     <ClInclude Include="Render.h" />
     <ClInclude Include="RigidBody.h" />
@@ -145,10 +148,13 @@
   <ItemGroup>
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="AudioSource.cpp" />
+    <ClCompile Include="BallBehavior.cpp" />
     <ClCompile Include="BoxCollider.cpp" />
+    <ClCompile Include="EnemyBehavior.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="FloorMoving.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="LifeManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PictureGameObject.cpp" />
     <ClCompile Include="Render.cpp" />

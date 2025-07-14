@@ -28,5 +28,5 @@ public:
     /// 每帧更新后，在游戏对象UpdateLogic方法后调用一次
     /// </summary>
     /// <param name="deltaTime">时间间隔</param>
-    virtual void UpdateLogic(float deltaTime) = 0;
+    virtual void Update(float deltaTime) = 0;
 };

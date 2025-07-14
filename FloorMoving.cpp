@@ -1,5 +1,5 @@
 #include "FloorMoving.h"
-void FloorMoving::UpdateLogic(float deltaTime) {
+void FloorMoving::Update(float deltaTime) {
 	Vector2 frameScale = Engine::GetInstance({})->frameScale;
 	Vector2 scale = gameObject->transform.scale;
 	gameObject->GetComponent<RigidBody>()->velocity = { 0.1f * direction * speed,0.02f };

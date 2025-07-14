@@ -109,7 +109,7 @@ void PlayerGameObject::Update(float deltaTime) {
     }
     Vector2 frameScale = Engine::GetInstance({})->frameScale;
     for (auto component : components) {
-        component->UpdateLogic(deltaTime);
+        component->Update(deltaTime);
     }
     if (transform.position.y > frameScale.y - transform.scale.y / 2) {
         transform.position = { 0,0 };
@@ -138,5 +138,11 @@ PlayerGameObject::PlayerGameObject(std::string name,int renderOrder,Vector2 pos)
 
 void PlayerGameObject::OnTriggerEnter(GameObject* other) {
     std::cout << name << " Trigger Enter with " << other->name << std::endl;
-    Engine::GetInstance({})->isRunning = false;
+    if (other->name == "Elysia") {
+        Engine::GetInstance({})->isRunning = false;
+    }
+    if (other->gameObjectType == GameObjectType::Ball) {
+        transform.position = {0,0};
+        GetComponent<LifeManager>()->leftTime = 30000;
+    }
 }

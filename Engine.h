@@ -2,6 +2,7 @@
 #include <vector>
 #include "GameObject.h"
 #include "Render.h"
+#include <queue>
 /// <summary>
 /// 游戏引擎的核心类(单例)
 /// </summary>
@@ -42,6 +43,12 @@ public:
     /// 游戏对象列表
     /// </summary>
     std::vector<GameObject*> gameObjects;
+    /// <summary>
+    /// 在运行过程中添加游戏对象，防止插入vector时引起迭代器失效
+    /// </summary>
+    /// <param name="obj"></param>
+    void AddGameObjectInRun(GameObject* obj);
+    std::queue<GameObject*> addGameObjectsInWait;
 
 private:
     static Engine* instance;

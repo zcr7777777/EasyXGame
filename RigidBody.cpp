@@ -8,7 +8,7 @@
 
 void RigidBody::Start() {}
 
-void RigidBody::UpdateLogic(float deltaTime) {
+void RigidBody::Update(float deltaTime) {
     velocity += acceleration * deltaTime;
     velocity *= pow(0.95f, deltaTime*0.05);
     if (velocity.y > 0.2f) {

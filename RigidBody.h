@@ -16,7 +16,7 @@ class RigidBody final: public IComponent
         /// </summary>
         Vector2 acceleration = {0,0.001f};
         void Start() override;
-        void UpdateLogic(float deltaTime) override;
+        void Update(float deltaTime) override;
         /// <summary>
         /// 对刚体施加一个力
         /// </summary>

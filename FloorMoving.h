@@ -19,6 +19,6 @@ public:
 	FloorMoving(GameObject* obj) : IComponent(obj) {}
 	~FloorMoving() override= default;
 	void Start()override {}
-	void UpdateLogic(float deltaTime)override;
+	void Update(float deltaTime)override;
 };
 

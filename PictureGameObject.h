@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+#include "IComponent.h"
 class PictureGameObject : public GameObject
 {
 public:
@@ -9,7 +10,7 @@ public:
         std::wstring path= std::wstring(picturePath.begin(), picturePath.end());
         loadimage(texture.get(), path.c_str());
     }
-	void Start() override;
+    void Start() override;
     void Update(float deltaTime) override;
     ~PictureGameObject() override= default;
 };
