@@ -22,7 +22,7 @@ private:
     public:
         PlayerGameObject(std::string name,int renderOrder,Vector2 pos);
         void Start() override;
-        void UpdateLogic(float deltaTime) override;
+        void Update(float deltaTime) override;
         std::set<GameObject*> sideCollider;
         std::set<GameObject*> groundCollider;
         /// <summary>

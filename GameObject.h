@@ -66,7 +66,7 @@ protected:
         /// UpdateLogic函数每帧调用一次，用来更新游戏逻辑
         /// </summary>
         /// <param name="deltaTime">距上一帧的时间间隔</param>
-        virtual void UpdateLogic(float deltaTime) = 0;
+        virtual void Update(float deltaTime) = 0;
         /// <summary>
         /// 向GameObject添加组件
         /// </summary>

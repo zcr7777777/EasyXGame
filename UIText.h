@@ -12,6 +12,6 @@ public:
         transform = Transform(pos, Vector2(1, 1), 0);
     }
     void Start() override;
-    void UpdateLogic(float deltaTime) override {}
+    void Update(float deltaTime) override {}
 };
 

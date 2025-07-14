@@ -30,7 +30,7 @@ void Engine::RunTime() {
         float dt = deltaTime.count();
         Render::BeginFrame(1000.f / dt);
         for (GameObject* gameObject : gameObjects) {
-            gameObject->UpdateLogic(dt);   
+            gameObject->Update(dt);   
         }
         Render::RenderGameObjects();
         Render::EndFrame();

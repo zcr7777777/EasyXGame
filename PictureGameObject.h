@@ -10,7 +10,7 @@ public:
         loadimage(texture.get(), path.c_str());
     }
 	void Start() override;
-    void UpdateLogic(float deltaTime) override;
+    void Update(float deltaTime) override;
     ~PictureGameObject() override= default;
 };
 

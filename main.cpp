@@ -10,13 +10,15 @@ int main()
 {
     srand(time(NULL));
     Engine* engine;
+
         /// **第一关：新手教程** ///
 
         // 初始化引擎
         engine = Engine::GetInstance({ 800,440 });
 
         // 添加游戏对象
-        engine->AddGameObject(new UIText("Guide",3,{0,0},_T("教程：按AD左右移动，点击角色跳跃")));
+        engine->AddGameObject(new UIText("Guide1",3,{0,0},_T("教程：按AD左右移动，点击角色跳跃按空格发射")));
+        engine->AddGameObject(new UIText("Guide2", 3, { 0,50 }, _T("按空格向鼠标指针方向发射武器攻击敌人")));
         engine->AddGameObject(new PlayerGameObject("Player", 0, { 0,300 }));
         engine->AddGameObject(new WallGameObject("Floor", 1, Transform({ 64,364 }, { 127,44 }, 0)));
         engine->AddGameObject(new WallGameObject("Floor", 1, Transform({ 191,484 }, { 127,44 }, 0)));
@@ -37,7 +39,8 @@ int main()
 
         // 释放引擎
         Engine::Dispose();
-        /// **第二关** ///
+
+        /// **第二关 跳跃** ///
 
         // 初始化引擎
         engine = Engine::GetInstance({ 1334,467 });
@@ -53,6 +56,26 @@ int main()
         e = new PictureGameObject("Elysia", 2, { 1250,120 }, "Elysia.png");
         e->AddComponent(new BoxCollider(e, true));
         engine->AddGameObject(e);
+
+        // 运行游戏
+        engine->Start();
+        engine->RunTime();
+
+        // 释放引擎
+        Engine::Dispose();
+
+        /// **第三关 BOSS战** ///
+
+        // 初始化引擎
+        engine = Engine::GetInstance({ 1920,900 });
+
+        // 添加游戏对象
+        engine->AddGameObject(new PictureGameObject("BackGround", -1, { 40,40 }, "ElysianRealm1.jpg"));
+        engine->AddGameObject(new PlayerGameObject("Player", 0, { 0,0 }));
+        for (int i = 0; i < 16; i++) {
+            WallGameObject* wall = new WallGameObject("Floor" + std::to_string(i), 1, Transform({ (float)i*127,880 }, { 127,44 }, 0));
+            engine->AddGameObject(wall);
+        }
 
         // 运行游戏
         engine->Start();

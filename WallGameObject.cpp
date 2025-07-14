@@ -15,7 +15,7 @@ void WallGameObject::Start()
     AddComponent(rigidBody);
     AddComponent(boxCollider);
 }
-void WallGameObject::UpdateLogic(float deltaTime) {
+void WallGameObject::Update(float deltaTime) {
     for (auto component : components)
         component->UpdateLogic(deltaTime);
 }

@@ -65,7 +65,6 @@ void PlayerGameObject::OnCollisionStay(GameObject* other) {
             rigidBody->velocity.x += other->GetComponent<RigidBody>()->velocity.x * 1.3;
         }
     }
-    std::cout << name << " Collision Stay  with " << other->name <<std::endl;
 }
 void PlayerGameObject::OnCollisionExit(GameObject* other) {
     std::cout << name << " Collision Exit  with " << other->name << std::endl;
@@ -81,7 +80,7 @@ void PlayerGameObject::OnCollisionExit(GameObject* other) {
         onGround = false;
     }
 }
-void PlayerGameObject::UpdateLogic(float deltaTime) {
+void PlayerGameObject::Update(float deltaTime) {
     if (groundCollider.empty()) {
         onGround=false;
     }
@@ -124,6 +123,13 @@ void PlayerGameObject::UpdateLogic(float deltaTime) {
     }
     if (transform.position.y < transform.scale.y / 2) {
         transform.position.y = transform.scale.y / 2;
+    }
+
+    /*      为了便于调试，以下是作弊代码       */
+    /*    按 Ctrl + Delete 可以直接跳过本关    */
+    if (Input::GetKey(VK_CONTROL) && Input::GetKey(VK_DELETE)) {
+        Engine::GetInstance({})->isRunning = false;
+        Sleep(1000); // 防止误操作连续跳关
     }
 }
 PlayerGameObject::PlayerGameObject(std::string name,int renderOrder,Vector2 pos):GameObject(name,GameObjectType::Player,renderOrder){
