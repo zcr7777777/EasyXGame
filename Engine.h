@@ -6,14 +6,15 @@
 /// <summary>
 /// 游戏引擎的核心类(单例)
 /// </summary>
-class Engine final{
+class Engine final
+{
 public:
     /// <summary>
     /// 获得游戏引擎单例
     /// </summary>
     /// <param name="frameScale">窗口大小</param>
     /// <returns>单例指针</returns>
-    static Engine* GetInstance(Vector2 frameScale);
+    static Engine *GetInstance(Vector2 frameScale);
     /// <summary>
     /// 启动游戏引擎
     /// </summary>
@@ -26,7 +27,7 @@ public:
     /// 将一个游戏对象添加到场景中
     /// </summary>
     /// <param name="obj">指向要添加的 GameObject 对象的指针</param>
-    void AddGameObject(GameObject* obj);
+    void AddGameObject(GameObject *obj);
     /// <summary>
     /// 释放引擎的所有资源。
     /// </summary>
@@ -38,25 +39,25 @@ public:
     /// <summary>
     /// 屏幕帧大小
     /// </summary>
-    Vector2 frameScale = {0,0};
+    Vector2 frameScale = {0, 0};
     /// <summary>
     /// 游戏对象列表
     /// </summary>
-    std::vector<GameObject*> gameObjects;
+    std::vector<GameObject *> gameObjects;
     /// <summary>
     /// 在运行过程中添加游戏对象，防止插入vector时引起迭代器失效
     /// </summary>
     /// <param name="obj"></param>
-    void AddGameObjectInRun(GameObject* obj);
-    std::queue<GameObject*> addGameObjectsInWait;
+    void AddGameObjectInRun(GameObject *obj);
+    std::queue<GameObject *> addGameObjectsInWait;
 
 private:
-    static Engine* instance;
+    static Engine *instance;
 
     Engine(Vector2 frameScale);
     ~Engine() = default;
-    Engine(const Engine&) = delete;
-    void operator=(const Engine&) = delete;
-    Engine(Engine&&) = delete;
-    void operator=(Engine&&) = delete;
+    Engine(const Engine &) = delete;
+    void operator=(const Engine &) = delete;
+    Engine(Engine &&) = delete;
+    void operator=(Engine &&) = delete;
 };

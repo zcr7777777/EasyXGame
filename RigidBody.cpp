@@ -8,15 +8,18 @@
 
 void RigidBody::Start() {}
 
-void RigidBody::Update(float deltaTime) {
+void RigidBody::Update(float deltaTime)
+{
     velocity += acceleration * deltaTime;
-    velocity *= pow(0.95f, deltaTime*0.05);
-    if (velocity.y > 0.2f) {
+    velocity *= pow(0.95f, deltaTime * 0.05);
+    if (velocity.y > 0.2f)
+    {
         velocity.y = 0.2f;
     }
     gameObject->transform.position += velocity * deltaTime;
-    acceleration = { 0,0 };
+    acceleration = {0, 0};
 }
-void RigidBody::AddForce(Vector2 force) {
+void RigidBody::AddForce(Vector2 force)
+{
     acceleration += force;
 }

@@ -3,17 +3,16 @@
 /// <summary>
 /// 音频源组件
 /// </summary>
-class AudioSource :  public IComponent
+class AudioSource : public IComponent
 {
 public:
-	AudioSource(GameObject* obj) : IComponent(obj) {}
+	AudioSource(GameObject *obj) : IComponent(obj) {}
 	~AudioSource() override = default;
-	void Start()override {}
-	void Update(float deltaTime)override {}
+	void Start() override {}
+	void Update(float deltaTime) override {}
 	/// <summary>
 	/// 播放音频
 	/// </summary>
 	/// <param name="path">音频文件路径</param>
 	void Play(std::string path);
 };
-

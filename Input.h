@@ -24,4 +24,3 @@ public:
 	/// <returns>如果指定的鼠标按钮被按下则返回true否则返回false</returns>
 	static bool GetMouseButton(int button);
 };
-

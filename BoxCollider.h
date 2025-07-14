@@ -20,57 +20,57 @@ public:
     /// <summary>
     /// 碰撞发生方向
     /// </summary>
-    Vector2 CollideDirection = { 0,0 };
+    Vector2 CollideDirection = {0, 0};
     /// <summary>
     /// 场景中的所有碰撞器
     /// </summary>
-    static std::vector<BoxCollider*> s_Instances;
+    static std::vector<BoxCollider *> s_Instances;
     /// <summary>
     /// 当前正在检测的碰撞器
     /// </summary>
-    std::vector<BoxCollider*> m_CurrentCollisions;
+    std::vector<BoxCollider *> m_CurrentCollisions;
     /// <summary>
     /// 上一帧检测的碰撞器
     /// </summary>
-    std::vector<BoxCollider*> m_PreviousCollisions;
+    std::vector<BoxCollider *> m_PreviousCollisions;
     /// <summary>
     /// 触发器进入回调
     /// </summary>
-    std::function<void(GameObject*)> onTriggerEnter;
+    std::function<void(GameObject *)> onTriggerEnter;
     /// <summary>
     /// 触发器停留回调
     /// </summary>
-    std::function<void(GameObject*)> onTriggerStay;
+    std::function<void(GameObject *)> onTriggerStay;
     /// <summary>
     /// 触发器退出回调
     /// </summary>
-    std::function<void(GameObject*)> onTriggerExit;
+    std::function<void(GameObject *)> onTriggerExit;
     /// <summary>
     /// 碰撞器进入回调
     /// </summary>
-    std::function<void(GameObject*)> onCollisionEnter;
+    std::function<void(GameObject *)> onCollisionEnter;
     /// <summary>
     /// 碰撞器停留回调
     /// </summary>
-    std::function<void(GameObject*)> onCollisionStay;
+    std::function<void(GameObject *)> onCollisionStay;
     /// <summary>
     /// 碰撞器退出回调
     /// </summary>
-    std::function<void(GameObject*)> onCollisionExit;
+    std::function<void(GameObject *)> onCollisionExit;
 
     /// <summary>
     /// 碰撞器尺寸
     /// </summary>
-    Vector2 size{ 1.0f, 1.0f };
+    Vector2 size{1.0f, 1.0f};
     /// <summary>
     /// 是否为触发器(无物理效果)
     /// </summary>
-    bool isTrigger{ false };
+    bool isTrigger{false};
 
-    BoxCollider(GameObject* obj,bool isTrigger=false) : IComponent(obj), isTrigger(isTrigger)
+    BoxCollider(GameObject *obj, bool isTrigger = false) : IComponent(obj), isTrigger(isTrigger)
     {
         s_Instances.push_back(this);
-        worldPosition = obj-> transform.position;
+        worldPosition = obj->transform.position;
     }
 
     void Start() override
@@ -101,7 +101,8 @@ public:
 
         for (auto other : s_Instances)
         {
-            if (other == this) continue;
+            if (other == this)
+                continue;
 
             if (CheckCollision(*other))
             {
@@ -114,7 +115,8 @@ public:
     /// </summary>
     /// <param name="other">另一个碰撞器</param>
     /// <returns>是否发生碰撞</returns>
-    bool CheckCollision(const BoxCollider& other){
+    bool CheckCollision(const BoxCollider &other)
+    {
         // 计算碰撞器半尺寸
         Vector2 halfSize = size * 0.5f;
         Vector2 otherHalf = other.size * 0.5f;
@@ -126,11 +128,11 @@ public:
         Vector2 otherMax = other.worldPosition + otherHalf;
         float dx = (thisMax.x < otherMax.x) ? thisMax.x - otherMin.x : otherMax.x - thisMin.x;
         float dy = (thisMax.y < otherMax.y) ? thisMax.y - otherMin.y : otherMax.y - thisMin.y;
-        CollideDirection=Vector2(dx,dy);
+        CollideDirection = Vector2(dx, dy);
 
         // AABB 碰撞检测(对称轴轴对齐包围盒检测法)
         return (thisMin.x <= otherMax.x && thisMax.x >= otherMin.x &&
-            thisMin.y <= otherMax.y && thisMax.y >= otherMin.y);
+                thisMin.y <= otherMax.y && thisMax.y >= otherMin.y);
     }
 
     void ProcessCollisions()
@@ -162,39 +164,45 @@ public:
         m_PreviousCollisions = m_CurrentCollisions;
     }
 
-    void TriggerEnterEvent(BoxCollider* other)
+    void TriggerEnterEvent(BoxCollider *other)
     {
         if (other->isTrigger)
         {
-            if (onTriggerEnter) onTriggerEnter(other->gameObject);
+            if (onTriggerEnter)
+                onTriggerEnter(other->gameObject);
         }
         else
         {
-            if (onCollisionEnter) onCollisionEnter(other->gameObject);
+            if (onCollisionEnter)
+                onCollisionEnter(other->gameObject);
         }
     }
 
-    void TriggerStayEvent(BoxCollider* other)
+    void TriggerStayEvent(BoxCollider *other)
     {
         if (other->isTrigger)
         {
-            if (onTriggerStay) onTriggerStay(other->gameObject);
+            if (onTriggerStay)
+                onTriggerStay(other->gameObject);
         }
         else
         {
-            if (onCollisionStay) onCollisionStay(other->gameObject);
+            if (onCollisionStay)
+                onCollisionStay(other->gameObject);
         }
     }
 
-    void TriggerExitEvent(BoxCollider* other)
+    void TriggerExitEvent(BoxCollider *other)
     {
         if (other->isTrigger)
         {
-            if (onTriggerExit) onTriggerExit(other->gameObject);
+            if (onTriggerExit)
+                onTriggerExit(other->gameObject);
         }
         else
         {
-            if (onCollisionExit) onCollisionExit(other->gameObject);
+            if (onCollisionExit)
+                onCollisionExit(other->gameObject);
         }
     }
 
@@ -206,8 +214,9 @@ public:
     ~BoxCollider() override
     {
         auto it = std::find(s_Instances.begin(), s_Instances.end(), this);
-        if (it != s_Instances.end()) {
-            delete* it;
+        if (it != s_Instances.end())
+        {
+            delete *it;
             s_Instances.erase(it);
         }
     }

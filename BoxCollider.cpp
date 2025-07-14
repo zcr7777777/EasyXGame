@@ -1,2 +1,2 @@
 #include "BoxCollider.h"
-std::vector<BoxCollider*> BoxCollider::s_Instances;
+std::vector<BoxCollider *> BoxCollider::s_Instances;

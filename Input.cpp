@@ -4,7 +4,8 @@
 #include <windows.h>
 #include <graphics.h>
 
-Vector2 Input::GetMousePosition() {
+Vector2 Input::GetMousePosition()
+{
     // 获取屏幕坐标
     POINT point;
     GetCursorPos(&point);
@@ -17,17 +18,27 @@ Vector2 Input::GetMousePosition() {
     return Vector2(static_cast<float>(point.x), static_cast<float>(point.y));
 }
 
-bool Input::GetKey(int keyCode) {
+bool Input::GetKey(int keyCode)
+{
     return GetAsyncKeyState(keyCode) != 0;
 }
 
-bool Input::GetMouseButton(int button) {
+bool Input::GetMouseButton(int button)
+{
     int vkCode = 0;
-    switch (button) {
-    case 0: vkCode = VK_LBUTTON; break; // 左键
-    case 1: vkCode = VK_RBUTTON; break; // 右键
-    case 2: vkCode = VK_MBUTTON; break; // 中键
-    default: return false; // 无效按钮编号
+    switch (button)
+    {
+    case 0:
+        vkCode = VK_LBUTTON;
+        break; // 左键
+    case 1:
+        vkCode = VK_RBUTTON;
+        break; // 右键
+    case 2:
+        vkCode = VK_MBUTTON;
+        break; // 中键
+    default:
+        return false; // 无效按钮编号
     }
 
     // 检测按键状态（使用位掩码检查最高位）

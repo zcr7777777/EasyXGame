@@ -9,24 +9,25 @@ protected:
 	/// <summary>
 	/// 绑定此组件的游戏对象
 	/// </summary>
-	GameObject* gameObject;
+	GameObject *gameObject;
+
 public:
 	/// <summary>
 	/// 创建组件
 	/// </summary>
 	/// <param name="obj">绑定此组件的游戏对象</param>
-	IComponent(GameObject* obj) : gameObject(obj){}
-    /// <summary>
+	IComponent(GameObject *obj) : gameObject(obj) {}
+	/// <summary>
 	/// 组件析构方法
 	/// </summary>
 	virtual ~IComponent() = default;
-    /// <summary>
+	/// <summary>
 	/// 在游戏对象Start方法后调用一次
 	/// </summary>
 	virtual void Start() = 0;
-    /// <summary>
-    /// 每帧更新后，在游戏对象UpdateLogic方法后调用一次
-    /// </summary>
-    /// <param name="deltaTime">时间间隔</param>
-    virtual void Update(float deltaTime) = 0;
+	/// <summary>
+	/// 每帧更新后，在游戏对象UpdateLogic方法后调用一次
+	/// </summary>
+	/// <param name="deltaTime">时间间隔</param>
+	virtual void Update(float deltaTime) = 0;
 };

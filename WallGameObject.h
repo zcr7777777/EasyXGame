@@ -9,12 +9,12 @@
 class WallGameObject : public GameObject
 {
 private:
-    BoxCollider* boxCollider = nullptr;
-    RigidBody* rigidBody = nullptr;
+    BoxCollider *boxCollider = nullptr;
+    RigidBody *rigidBody = nullptr;
+
 public:
-    WallGameObject(std::string name,int renderOrder,Transform transform);
+    WallGameObject(std::string name, int renderOrder, Transform transform);
     void Start() override;
     void Update(float deltaTime) override;
-    ~WallGameObject() override=default;
+    ~WallGameObject() override = default;
 };
-
