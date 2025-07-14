@@ -5,6 +5,7 @@
 #include "WallGameObject.h"
 #include "FloorMoving.h"
 #include "PictureGameObject.h"
+#include "UIText.h"
 int main()
 {
     srand(time(NULL));
@@ -15,6 +16,7 @@ int main()
         engine = Engine::GetInstance({ 800,440 });
 
         // 添加游戏对象
+        engine->AddGameObject(new UIText("Guide",3,{0,0},_T("教程：按AD左右移动，点击角色跳跃")));
         engine->AddGameObject(new PlayerGameObject("Player", 0, { 0,300 }));
         engine->AddGameObject(new WallGameObject("Floor", 1, Transform({ 64,364 }, { 127,44 }, 0)));
         engine->AddGameObject(new WallGameObject("Floor", 1, Transform({ 191,484 }, { 127,44 }, 0)));

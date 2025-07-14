@@ -28,11 +28,10 @@ void Engine::RunTime() {
         std::chrono::duration<float, std::milli> deltaTime = currentTime - lastTime;
         lastTime = currentTime;
         float dt = deltaTime.count();
+        Render::BeginFrame(1000.f / dt);
         for (GameObject* gameObject : gameObjects) {
             gameObject->UpdateLogic(dt);   
         }
-        std::cout<<1000.f/dt<<std::endl;
-        Render::BeginFrame(1000.f/dt);
         Render::RenderGameObjects();
         Render::EndFrame();
     }

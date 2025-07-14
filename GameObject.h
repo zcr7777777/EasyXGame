@@ -28,7 +28,7 @@ class GameObject
         /// <summary>
         /// ¿‡–Õ
         /// </summary>
-        GameObjectType gameObjectType;
+        GameObjectType gameObjectType=GameObjectType::Other;
         /// <summary>
         /// √˚≥∆
         /// </summary>

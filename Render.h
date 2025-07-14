@@ -5,6 +5,7 @@
 #include "graphics.h"
 #include "GameObject.h"
 #include "Engine.h"
+#include <functional>
 /// <summary>
 /// 渲染模块，用于全局绘制控制
 /// </summary>
@@ -13,6 +14,15 @@ namespace Render {
 	/// 窗口句柄
 	/// </summary>
 	extern HWND windowHandle;
+	/// <summary>
+	/// UI绘制函数
+	/// </summary>
+	extern std::vector<std::function<void()>> UIRender;
+	/// <summary>
+	/// 添加UI绘制函数
+	/// </summary>
+	/// <param name="func"></param>
+	void AddUIRender(std::function<void()> func);
 	/// <summary>
 	/// 初始化渲染模块
 	/// </summary>

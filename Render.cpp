@@ -6,6 +6,7 @@
 #include <stdexcept>
 namespace Render { 
 	HWND windowHandle = nullptr;
+	std::vector<std::function<void()>> UIRender;
 }
 void Render::Initialize(Vector2 frameScale) {
 	windowHandle = initgraph(frameScale.x, frameScale.y, EW_SHOWCONSOLE);
@@ -22,11 +23,27 @@ void Render::RenderGameObjects() {
 	for (auto gameObject : Engine::GetInstance({})->gameObjects) {
 		RenderGameObject(gameObject);
 	}
+	for (auto uiRender : UIRender) {
+		uiRender();
+	}
+}
+
+void Render::AddUIRender(std::function<void()> func) {
+    UIRender.push_back(func);
+}
+
+void putimage_alpha(IMAGE* dstImg, int x, int y, IMAGE* srcImg, UINT transparentColor)
+{
+	HDC dstDC = GetImageHDC(dstImg);
+	HDC srcDC = GetImageHDC(srcImg);
+	int w = srcImg->getwidth();
+	int h = srcImg->getheight();
+	TransparentBlt(dstDC, x, y, w, h, srcDC, 0, 0, w, h, transparentColor);
 }
 void Render::RenderGameObject(GameObject* gameObject) {
 	if (gameObject->texture != nullptr) {
 		Transform transform = gameObject->transform;
-		putimage(-transform.scale.x / 2.0 + transform.position.x, -transform.scale.y / 2.0 + transform.position.y,gameObject-> texture.get());
+		putimage_alpha(NULL, -transform.scale.x / 2.0 + transform.position.x, -transform.scale.y / 2.0 + transform.position.y, gameObject->texture.get(), WHITE);
 	}
 }
 void Render::EndFrame() {
@@ -34,5 +51,6 @@ void Render::EndFrame() {
 	EndBatchDraw();
 }
 void Render::Dispose() {
+	UIRender.clear();
 	closegraph();
 }
