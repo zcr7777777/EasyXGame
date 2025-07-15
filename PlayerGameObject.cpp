@@ -138,7 +138,8 @@ void PlayerGameObject::Update(float deltaTime)
     }
     if (transform.position.y > frameScale.y - transform.scale.y / 2)
     {
-        transform.position = {0, 0};
+        transform.position.y = 0;
+        transform.position.x -= 100;
         sideCollider.clear();
         groundCollider.clear();
     }

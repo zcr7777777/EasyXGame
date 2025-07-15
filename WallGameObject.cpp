@@ -15,6 +15,9 @@ void WallGameObject::Start()
     rigidBody->acceleration = {0, 0};
     AddComponent(rigidBody);
     AddComponent(boxCollider);
+    for (auto component : components) {
+        component->Start();
+    }
 }
 void WallGameObject::Update(float deltaTime)
 {

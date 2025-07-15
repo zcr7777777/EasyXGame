@@ -2,6 +2,7 @@
 #include "IComponent.h"
 #include "Engine.h"
 #include "RigidBody.h"
+#include "BoxCollider.h"
 /// <summary>
 /// 地板移动组件，用于控制地板随机移动
 /// </summary>
@@ -18,6 +19,7 @@ public:
 	float speed = (rand() % 5 + 3.0) * 0.1;
 	FloorMoving(GameObject *obj) : IComponent(obj) {}
 	~FloorMoving() override = default;
-	void Start() override {}
+	void Start() override;
 	void Update(float deltaTime) override;
+	void OnCollisionEnter(GameObject *other);
 };

@@ -50,7 +50,7 @@ int main()
     // 添加游戏对象
     engine->AddGameObject(new PictureGameObject("BackGround", -1, {40, 40}, "ElysianRealm2.jpg"));
     engine->AddGameObject(new PlayerGameObject("Player", 0, {0, 0}));
-    for (int i = 0; i < 20; i++)
+    for (int i = 0; i < 15; i++)
     {
         WallGameObject *wall = new WallGameObject("Floor" + std::to_string(i), 1, Transform({(float)(rand() % ((int)engine->frameScale.x)), (float)(rand() % ((int)engine->frameScale.y * 2) - engine->frameScale.y)}, {127, 44}, 0));
         wall->AddComponent(new FloorMoving(wall));
@@ -87,7 +87,7 @@ int main()
         WallGameObject *wall = new WallGameObject("Floor" + std::to_string(i), 1, Transform({(float)i * 127, 880}, {127, 44}, 0));
         engine->AddGameObject(wall);
     }
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 8; i++)
     {
         GameObject *ball;
         ball = new PictureGameObject("Ball" + std::to_string(i), 2, {0, 0}, "ball.png");
